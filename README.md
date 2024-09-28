@@ -25,7 +25,7 @@ The Metamask ATM is a decentralized application (dApp) built on the Ethereum blo
 1. Clone the repository:
    ```bash
    git clone https://github.com/harshit2064/Metamask-ATM.git
-   cd metacrafters-atm
+   cd Metamask-ATM
 
 After cloning the github, you will want to do the following to get the code running on your computer.
 
