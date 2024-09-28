@@ -9,10 +9,18 @@ contract Assessment {
 
     event Deposit(uint256 amount);
     event Withdraw(uint256 amount);
+    event OwnershipTransfer(address indexed prevOwner, address indexed currOwner);
+
 
     constructor(uint initBalance) payable {
         owner = payable(msg.sender);
         balance = initBalance;
+    }
+
+    // Modifier to restrict access to the owner
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not the owner of this account");
+        _;
     }
 
     function getBalance() public view returns(uint256){
@@ -56,5 +64,12 @@ contract Assessment {
 
         // emit the event
         emit Withdraw(_withdrawAmount);
+    }
+
+    // Function to transfer ownership
+    function transferOwnership(address payable newOwner) public onlyOwner {
+        require(newOwner != address(0), "New owner is the zero address");
+        emit OwnershipTransfer(owner, newOwner);
+        owner = newOwner;
     }
 }
